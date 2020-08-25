@@ -1,0 +1,158 @@
+I"�<h1 id="1-도커-설치">1. 도커 설치</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- https://docs.docker.com/engine/install/ubuntu/
+- 2020년 8월 기준으로 위의 공식문서대로 도커를 설치하면 된다.
+	- Old version remove하고자 할 때
+	- $ sudo apt-get remove docker docker-engine docker.io containerd runc
+	
+1. Set up repository ```  $ sudo apt-get update    $ sudo apt-get install \
+apt-transport-https \
+ca-certificates \
+curl \
+gnupg-agent \
+software-properties-common ```
+	
+	2. Add Docker’s official GPG key: ```
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+Verify that you now have the key with the fingerprint 
+9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88, by searching for the last 8 characters of the fingerprint.
+
+$ sudo apt-key fingerprint 0EBFCD88
+
+pub   rsa4096 2017-02-22 [SCEA]
+			9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88
+uid           [ unknown] Docker Release (CE deb) &lt;docker@docker.com&gt;
+sub   rsa4096 2017-02-22 [S]
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+	3. repository 추가 (x86_64 / amd64 기준)   
+</code></pre></div></div>
+<p>$ sudo add-apt-repository <br />
+   “deb [arch=amd64] https://download.docker.com/linux/ubuntu <br />
+   $(lsb_release -cs) <br />
+   stable”</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	
+	4. Install docker   
+</code></pre></div></div>
+<p>$ sudo apt-get update
+ $ sudo apt-get install docker-ce docker-ce-cli containerd.io</p>
+
+<p>설치 확인
+ $ sudo docker run hello-world</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 2. Nvidia용 docker 설치
+ - &lt;https://github.com/NVIDIA/nvidia-docker&gt;
+ - toolkit 버전을 설치하면 nvidia-docker명령어 대신 그냥 docker로 쳐도 적용된다고 한다.
+ 
+</code></pre></div></div>
+
+<p>Ubuntu 16.04/18.04/20.04, Debian Jessie/Stretch/Buster</p>
+<h1 id="add-the-package-repositories">Add the package repositories</h1>
+<p>distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list</p>
+
+<p>sudo apt-get update &amp;&amp; sudo apt-get install -y nvidia-container-toolkit
+sudo systemctl restart docker</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+## sudo docker
+ - 처음엔 sudo docker명령어를 써야 하므로 번거롭다.
+ - 아래 명령어를 적용하면 재로그인 후부터 그냥 docker로 명령어를 입력해도 된다.
+ - ```$ sudo usermod -aG docker $USER```
+
+# 3. 도커 기본 사용 명령어
+ |옵션|example|설명|
+ |---|---|---|
+ |  -p  |  -p 4000:4000 or -p 4000  | &lt; 호스트:컨테이너 포트&gt; 바인딩. 번호하나만 명시하면  컨테이너 포트만 지정. 놀고 있는 호스트 컨테이너 포트중 하나와 임의 매칭됨
+ | -v | -v ${PWD}:/src|  호스트 위치와 컨테이너 내부에서의 디렉토리를 마운트. 호스트 디렉토리가 우선하여 덮어씌운다.
+ |-it| | 컨테이너 내부에서 터미널 사용하고자 할 때 기본적으로 붙여주면 된다.
+ |--rm| | 컨테이너는 정지되어도 stop상태로 남아있다. 컨테이너가 종료될 때 자동으로 지워주도록 하는 옵션
+ |-d| | 백그라운드에서 컨테이너를 실행. 
+ | -e | -e PASSWORD=1234 | 해당 이미지 내에서 요구하는 환경변수 전달
+ |--network|  --net mynetwork | 어 떤 네트워크로 구성할 지 설정. 없으면 host 네트워크가 기본적으로 잡힌다.
+ |--name| --name mydb | 컨테이너의 이름 지정. 나중에 컨테이너를 지우거나 할 때 container id가 아닌 이름으로 지정할 수 있다.
+  - 컨테이너 내부에서 바깥으로 나올 떄 그냥 exit하면 컨테이너가 멈춘다.
+  - CTRL+p , CTRL+q 를 차례로 눌러 터미널이 정지되지 않을 채 나올 수 있다.
+ 
+ ---
+ 
+ 
+ # 4. 컨테이너 예제  
+  - MYSQL 컨테이너
+
+```$ docker run -v "$PWD/data":/var/lib/mysql -p 3306:3306 --name mysql_db -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql```
+```$ docker exec -it mysql_db bash```   
+
+- 해당 이미지가 없을 경우 자동으로 찾는다. 이미지 부터 받고 싶으면  docker pull &lt;이미지명&gt; 을 이용한다.
+- /var/lib/mysql은 mysql 컨테이너에서 공식적으로 지정하고 있는 위치이다. 
+- 3306번 포트를 서로 매칭했으며 MYSQL_ROOT_PASSWORD 환경변수를 컨테이너에 넘겨준다.
+- 백그라운드 에서 실행하게 되므로 컨테이너 안으로 들어가기 위해 exec 명령어를 실행한 후 bash shell을 쓰기위해 bash를 입력한다.
+- 만약 한번에 실행하고자 했을 경우 -d 옵션을 빼고 컨테이너 뒤에 바로 bash 혹은 /bin/bash 를 입력해주면 된다.
+- mysql 컨테이너는 다양한 종류가 있으며 경량화된 버전인 mysql/mysql-server 이미지를 이용하는 등 기호에 맞게 다운 가능하다
+
+
+</code></pre></div></div>
+<p>$ mysql -u root -p<br />
+	아까 시작 시 생성한 MYSQL_ROOT_PASSWORD 입력<br />
+$ select host form mysql.user where user=’root’;<br />
+	이 쿼리 결과에 %가 포함되어 있으면 root계정에 한해서 모든 접속을 허용한다고 한다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+- MONGO DB 컨테이너
+```$ docker run –name mongodb_db -v /home/test/mongodb/db:/data/db -d -p 27017:27017 mongo ```
+
+	- /data/db는 mongo 컨테이너가 역시 공식적으로 지정하고 있는 위치이다.
+	- 27017포트를 바인딩 해줘야 하며 역시 bash 접근을 위해선 docker exec -it mongodb_db bash 로 접근한다.
+	
+	
+	
+</code></pre></div></div>
+<p>관리자 계정 생성
+$ use admin</p>
+
+<p>$ db.createUser({
+user:”admin”,
+pwd:”admin”,
+roles:[{role:”userAdminAnyDatabase”, db:”admin”}]
+})</p>
+
+<p>관리자로 로그인 및 일반 계정 생성
+$ mongo -u “admin” -p “admin” –authenticationDatabase “admin”</p>
+
+<p>$use testdb
+$ db.createUser({ user: “tester”, pwd: “1234”, roles: [“dbAdmin”, “readWrite”] })</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+# 5. 기타 
+  - container 및 image 상태
+</code></pre></div></div>
+<p>docker ps
+ docker ps -a # 정지된 컨테이너 까지 보기</p>
+
+<p>docker images ( 또는 docker image ls)</p>
+
+<p>docker rm [container_id or name]
+ docker rmi [image name]</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 
+  - file안에서 bridge, network, ip등을 조사
+</code></pre></div></div>
+<p>docker inspect [container_id] &gt; file</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  - network    
+  
+</code></pre></div></div>
+<p>docker network create mynet
+ docker network connect mynet [container_id or name]</p>
+
+<p>docker network ls</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  - volumne
+  
+</code></pre></div></div>
+<p>docker volume create myvolume
+ docker volume inspect myvolume
+ docker volume ls
+ docker volume rm myvolume
+ ```</p>
+:ET

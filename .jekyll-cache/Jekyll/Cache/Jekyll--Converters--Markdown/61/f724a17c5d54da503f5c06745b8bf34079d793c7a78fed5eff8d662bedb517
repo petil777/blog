@@ -1,0 +1,45 @@
+I"<h1 id="1-도커-설치">1. 도커 설치</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- https://docs.docker.com/engine/install/ubuntu/
+- 2020년 8월 기준으로 위의 공식문서대로 도커를 설치하면 된다.
+	- Old version remove하고자 할 때
+	- $ sudo apt-get remove docker docker-engine docker.io containerd runc
+	
+1. Set up repository ```  $ sudo apt-get update    $ sudo apt-get install \
+apt-transport-https \
+ca-certificates \
+curl \
+gnupg-agent \
+software-properties-common ```
+</code></pre></div></div>
+
+<table>
+  <tbody>
+    <tr>
+      <td>curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list</td>
+      <td>sudo tee /etc/apt/sources.list.d/nvidia-docker.list</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 
+  - file안에서 bridge, network, ip등을 조사
+</code></pre></div></div>
+<p>docker inspect [container_id] &gt; file</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  - network    
+  
+</code></pre></div></div>
+<p>docker network create mynet
+ docker network connect mynet [container_id or name]</p>
+
+<p>docker network ls</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  - volumne
+  
+</code></pre></div></div>
+<p>docker volume create myvolume
+ docker volume inspect myvolume
+ docker volume ls
+ docker volume rm myvolume
+ ```</p>
+:ET

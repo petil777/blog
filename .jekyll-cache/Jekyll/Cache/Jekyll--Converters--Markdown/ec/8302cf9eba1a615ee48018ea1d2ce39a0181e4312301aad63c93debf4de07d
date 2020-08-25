@@ -1,0 +1,32 @@
+I"�<h1 id="1-도커-설치">1. 도커 설치</h1>
+<ul>
+  <li>https://docs.docker.com/engine/install/ubuntu/
+    <ul>
+      <li>2020년 8월 기준으로 위의 공식문서대로 도커를 설치하면 된다.
+        <ul>
+          <li>Old version remove하고자 할 때</li>
+          <li>$ sudo apt-get remove docker docker-engine docker.io containerd runc</li>
+        </ul>
+      </li>
+    </ul>
+
+    <ol>
+      <li>Set up repository
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $ sudo apt-get update  
+ $ sudo apt-get install \
+apt-transport-https \
+ca-certificates \
+curl \
+gnupg-agent \
+software-properties-common
+</code></pre></div>        </div>
+      </li>
+      <li>Add Docker’s official GPG key:</li>
+    </ol>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+</code></pre></div></div>
+<hr />
+:ET

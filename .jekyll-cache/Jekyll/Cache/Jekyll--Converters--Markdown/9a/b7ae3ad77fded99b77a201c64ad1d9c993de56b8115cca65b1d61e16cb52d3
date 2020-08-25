@@ -1,0 +1,15 @@
+I"�<h1 id="1-도커-설치">1. 도커 설치</h1>
+
+<ul>
+  <li>https://docs.docker.com/engine/install/ubuntu/</li>
+  <li>
+    <p>2020년 8월 기준으로 위의 공식문서대로 도커를 설치하면 된다.
+    - Old version remove하고자 할 때
+    - $ sudo apt-get remove docker docker-engine docker.io containerd runc</p>
+
+    <ol>
+      <li>Set up repository</li>
+    </ol>
+  </li>
+</ul>
+:ET

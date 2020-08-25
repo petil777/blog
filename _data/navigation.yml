@@ -1,0 +1,34 @@
+# main links
+main:
+#  - title: "Quick-Start Guide"
+#    url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
+  - title : "BLOG"
+    url : /
+  - title : "Categories"
+    url : /categories/
+  - title : "Tags"
+    url : /tags/
+#  - title : "About"
+#    url : /about/
+
+
+#docs:
+#  - title: IT
+#    children:
+#      - title: "Markdown"
+#        url : /it/markdown/
+#      - title: "Docker"
+#        url : /it/docker/
+#  - title: EXTRA
+#    children:
+#      - title: "Sample"
+#        url : /
+
+  # - title: "About"
+  #   url: https://mmistakes.github.io/minimal-mistakes/about/
+  # - title: "Sample Posts"
+  #   url: /year-archive/
+  # - title: "Sample Collections"
+  #   url: /collection-archive/
+  # - title: "Sitemap"
+  #   url: /sitemap/

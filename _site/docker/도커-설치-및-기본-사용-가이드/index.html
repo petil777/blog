@@ -1,0 +1,830 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>도커 설치 및 기본 사용가이드 - JH BLOG</title>
+<meta name="description" content="1. 도커 설치    https://docs.docker.com/engine/install/ubuntu/            2020년 8월 기준으로 위의 공식문서대로 도커를 설치하면 된다.                    Old version remove하고자 할 때           $ sudo apt-get remove docker docker-engine docker.io containerd runc                                  Set up repository          $ sudo apt-get update    $ sudo apt-get install \ apt-transport-https \ ca-certificates \ curl \ gnupg-agent \ software-properties-common                       Add Docker’s official GPG key:          $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -      Verify that you now have the key with the fingerprint     9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88, by searching for the last 8 characters of the fingerprint. $ sudo apt-key fingerprint 0EBFCD88      pub   rsa4096 2017-02-22 [SCEA]        9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88   uid           [ unknown] Docker Release (CE deb) &lt;docker@docker.com&gt;   sub   rsa4096 2017-02-22 [S]                         repository 추가         $ sudo add-apt-repository \ &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \ $(lsb_release -cs) \ stable&quot;">
+
+
+  <meta name="author" content="JH">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="JH BLOG">
+<meta property="og:title" content="도커 설치 및 기본 사용가이드">
+<meta property="og:url" content="http://0.0.0.0:4000/docker/%EB%8F%84%EC%BB%A4-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EA%B8%B0%EB%B3%B8-%EC%82%AC%EC%9A%A9-%EA%B0%80%EC%9D%B4%EB%93%9C/">
+
+
+  <meta property="og:description" content="1. 도커 설치    https://docs.docker.com/engine/install/ubuntu/            2020년 8월 기준으로 위의 공식문서대로 도커를 설치하면 된다.                    Old version remove하고자 할 때           $ sudo apt-get remove docker docker-engine docker.io containerd runc                                  Set up repository          $ sudo apt-get update    $ sudo apt-get install \ apt-transport-https \ ca-certificates \ curl \ gnupg-agent \ software-properties-common                       Add Docker’s official GPG key:          $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -      Verify that you now have the key with the fingerprint     9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88, by searching for the last 8 characters of the fingerprint. $ sudo apt-key fingerprint 0EBFCD88      pub   rsa4096 2017-02-22 [SCEA]        9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88   uid           [ unknown] Docker Release (CE deb) &lt;docker@docker.com&gt;   sub   rsa4096 2017-02-22 [S]                         repository 추가         $ sudo add-apt-repository \ &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \ $(lsb_release -cs) \ stable&quot;">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-08-20T00:00:00-05:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://0.0.0.0:4000/docker/%EB%8F%84%EC%BB%A4-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EA%B8%B0%EB%B3%B8-%EC%82%AC%EC%9A%A9-%EA%B0%80%EC%9D%B4%EB%93%9C/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "JH",
+      "url": "http://0.0.0.0:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="JH BLOG Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+		
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          J.H.kim Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">BLOG</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">JH</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>정리를 위하여 글을 남겨두는 사람입니다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">South Korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="도커 설치 및 기본 사용가이드">
+    <meta itemprop="description" content="1. 도커 설치  https://docs.docker.com/engine/install/ubuntu/          2020년 8월 기준으로 위의 공식문서대로 도커를 설치하면 된다.                  Old version remove하고자 할 때          $ sudo apt-get remove docker docker-engine docker.io containerd runc                            Set up repository         $ sudo apt-get update   $ sudo apt-get install \apt-transport-https \ca-certificates \curl \gnupg-agent \software-properties-common                    Add Docker’s official GPG key:         $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -     Verify that you now have the key with the fingerprint    9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88, by searching for the last 8 characters of the fingerprint.$ sudo apt-key fingerprint 0EBFCD88     pub   rsa4096 2017-02-22 [SCEA]       9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88  uid           [ unknown] Docker Release (CE deb) &lt;docker@docker.com&gt;  sub   rsa4096 2017-02-22 [S]                      repository 추가        $ sudo add-apt-repository \&quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \$(lsb_release -cs) \stable&quot;                      ">
+    <meta itemprop="datePublished" content="2020-08-20T00:00:00-05:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">도커 설치 및 기본 사용가이드
+</h1>
+          
+
+
+  <p class="page__meta">
+
+    
+
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        3 분 소요
+      
+    
+
+  </p>
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#1-도커-설치">1. 도커 설치</a></li>
+  <li><a href="#2-nvidia용-docker-설치">2. Nvidia용 docker 설치</a>
+    <ul>
+      <li><a href="#sudo-docker">sudo docker</a></li>
+    </ul>
+  </li>
+  <li><a href="#3-도커-기본-사용-명령어">3. 도커 기본 사용 명령어</a></li>
+  <li><a href="#4-컨테이너-예제">4. 컨테이너 예제</a></li>
+  <li><a href="#5-기타">5. 기타</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="1-도커-설치">1. 도커 설치</h1>
+<ul>
+  <li>https://docs.docker.com/engine/install/ubuntu/
+    <ul>
+      <li>2020년 8월 기준으로 위의 공식문서대로 도커를 설치하면 된다.
+        <ul>
+          <li>Old version remove하고자 할 때</li>
+          <li>$ sudo apt-get remove docker docker-engine docker.io containerd runc</li>
+        </ul>
+      </li>
+    </ul>
+
+    <ol>
+      <li>Set up repository
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $ sudo apt-get update  
+ $ sudo apt-get install \
+apt-transport-https \
+ca-certificates \
+curl \
+gnupg-agent \
+software-properties-common
+</code></pre></div>        </div>
+      </li>
+      <li>Add Docker’s official GPG key:
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -    
+ Verify that you now have the key with the fingerprint    
+9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88, by searching for the last 8 characters of the fingerprint.
+$ sudo apt-key fingerprint 0EBFCD88    
+ pub   rsa4096 2017-02-22 [SCEA]  
+     9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88  
+uid           [ unknown] Docker Release (CE deb) &lt;docker@docker.com&gt;  
+sub   rsa4096 2017-02-22 [S]  
+</code></pre></div>        </div>
+      </li>
+      <li>repository 추가
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo add-apt-repository \
+"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+$(lsb_release -cs) \
+stable"  
+</code></pre></div>        </div>
+      </li>
+      <li>Install docker
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $ sudo apt-get update  
+ $ sudo apt-get install docker-ce docker-ce-cli containerd.io  
+ 
+설치 확인  
+ $ sudo docker run hello-world
+</code></pre></div>        </div>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+<h1 id="2-nvidia용-docker-설치">2. Nvidia용 docker 설치</h1>
+<ul>
+  <li><a href="https://github.com/NVIDIA/nvidia-docker">https://github.com/NVIDIA/nvidia-docker</a></li>
+  <li>toolkit 버전을 설치하면 nvidia-docker명령어 대신 그냥 docker로 쳐도 적용된다고 한다.</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+ Ubuntu 16.04/18.04/20.04, Debian Jessie/Stretch/Buster
+# Add the package repositories
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+
+sudo apt-get update &amp;&amp; sudo apt-get install -y nvidia-container-toolkit
+sudo systemctl restart docker
+</code></pre></div></div>
+
+<h2 id="sudo-docker">sudo docker</h2>
+<ul>
+  <li>처음엔 sudo docker명령어를 써야 하므로 번거롭다.</li>
+  <li>아래 명령어를 적용하면 재로그인 후부터 그냥 docker로 명령어를 입력해도 된다.</li>
+  <li><code class="language-plaintext highlighter-rouge">$ sudo usermod -aG docker $USER</code></li>
+</ul>
+
+<h1 id="3-도커-기본-사용-명령어">3. 도커 기본 사용 명령어</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>옵션</th>
+      <th>example</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>-p</td>
+      <td>-p 4000:4000 or -p 4000</td>
+      <td>&lt; 호스트:컨테이너 포트&gt; 바인딩. 번호하나만 명시하면  컨테이너 포트만 지정. 놀고 있는 호스트 컨테이너 포트중 하나와 임의 매칭됨</td>
+    </tr>
+    <tr>
+      <td>-v</td>
+      <td>-v ${PWD}:/src</td>
+      <td>호스트 위치와 컨테이너 내부에서의 디렉토리를 마운트. 호스트 디렉토리가 우선하여 덮어씌운다.</td>
+    </tr>
+    <tr>
+      <td>-it</td>
+      <td> </td>
+      <td>컨테이너 내부에서 터미널 사용하고자 할 때 기본적으로 붙여주면 된다.</td>
+    </tr>
+    <tr>
+      <td>–rm</td>
+      <td> </td>
+      <td>컨테이너는 정지되어도 stop상태로 남아있다. 컨테이너가 종료될 때 자동으로 지워주도록 하는 옵션</td>
+    </tr>
+    <tr>
+      <td>-d</td>
+      <td> </td>
+      <td>백그라운드에서 컨테이너를 실행.</td>
+    </tr>
+    <tr>
+      <td>-e</td>
+      <td>-e PASSWORD=1234</td>
+      <td>해당 이미지 내에서 요구하는 환경변수 전달</td>
+    </tr>
+    <tr>
+      <td>–network</td>
+      <td>–net mynetwork</td>
+      <td>어 떤 네트워크로 구성할 지 설정. 없으면 host 네트워크가 기본적으로 잡힌다.</td>
+    </tr>
+    <tr>
+      <td>–name</td>
+      <td>–name mydb</td>
+      <td>컨테이너의 이름 지정. 나중에 컨테이너를 지우거나 할 때 container id가 아닌 이름으로 지정할 수 있다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>컨테이너 내부에서 바깥으로 나올 떄 그냥 exit하면 컨테이너가 멈춘다.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>CTRL+p , CTRL+q 를 차례로 눌러 터미널이 정지되지 않을 채 나올 수 있다.</li>
+</ul>
+
+<hr />
+
+<h1 id="4-컨테이너-예제">4. 컨테이너 예제</h1>
+<ul>
+  <li>MYSQL 컨테이너</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">$ docker run -v "$PWD/data":/var/lib/mysql -p 3306:3306 --name mysql_db -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql</code><br />
+<code class="language-plaintext highlighter-rouge">$ docker exec -it mysql_db bash</code></p>
+
+<ul>
+  <li>해당 이미지가 없을 경우 자동으로 찾는다. 이미지 부터 받고 싶으면  docker pull <이미지명> 을 이용한다.</이미지명></li>
+  <li>/var/lib/mysql은 mysql 컨테이너에서 공식적으로 지정하고 있는 위치이다.</li>
+  <li>3306번 포트를 서로 매칭했으며 MYSQL_ROOT_PASSWORD 환경변수를 컨테이너에 넘겨준다.</li>
+  <li>백그라운드 에서 실행하게 되므로 컨테이너 안으로 들어가기 위해 exec 명령어를 실행한 후 bash shell을 쓰기위해 bash를 입력한다.</li>
+  <li>만약 한번에 실행하고자 했을 경우 -d 옵션을 빼고 컨테이너 뒤에 바로 bash 혹은 /bin/bash 를 입력해주면 된다.</li>
+  <li>mysql 컨테이너는 다양한 종류가 있으며 경량화된 버전인 mysql/mysql-server 이미지를 이용하는 등 기호에 맞게 다운 가능하다</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ mysql -u root -p  
+	아까 시작 시 생성한 MYSQL_ROOT_PASSWORD 입력  
+$ select host form mysql.user where user='root';  
+	이 쿼리 결과에 %가 포함되어 있으면 root계정에 한해서 모든 접속을 허용한다고 한다.
+
+</code></pre></div></div>
+
+<ul>
+  <li>MONGO DB 컨테이너</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">$ docker run –name mongodb_db -v /home/test/mongodb/db:/data/db -d -p 27017:27017 mongo</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- /data/db는 mongo 컨테이너가 역시 공식적으로 지정하고 있는 위치이다.
+- 27017포트를 바인딩 해줘야 하며 역시 bash 접근을 위해선 docker exec -it mongodb_db bash 로 접근한다.
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>관리자 계정 생성
+$ use admin
+
+$ db.createUser({
+user:"admin",
+pwd:"admin",
+roles:[{role:"userAdminAnyDatabase", db:"admin"}]
+})
+
+관리자로 로그인 및 일반 계정 생성
+$ mongo -u “admin” -p “admin” –authenticationDatabase “admin”
+
+$ use testdb
+$ db.createUser({ user: “tester”, pwd: “1234”, roles: [“dbAdmin”, “readWrite”] })
+
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>VSCODE<br />
+ <code class="language-plaintext highlighter-rouge">$ docker run -it --name vsc -v ${PWD}/vscode:/home/coder/myproj -p 3000:3000 -p 8080:8080 -e PASSWORD=1234 codercom/code-server:latest</code></p>
+
+    <ul>
+      <li>/home/coder 안에서 내가 만든 프로젝트 위치를 연결하면 된다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>tensorflow with jupyter</p>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker run --gpus all -it --name mytf -v ${PWD}/tfdata:/tf -p 8888:8888 --network mynetwork \
+tensorflow/tensorflow:latest-gpu-jupyter
+</code></pre></div></div>
+
+<ul>
+  <li>/tf 디렉토리가 주피터 노트북 디렉토리와 일치한다.</li>
+  <li>비밀번호의 경우 dockerfile등의 형태로 만들어 안에서 비밀번호를 저장하는 위치에서 변경하도록 정의해야 실행할 때부터 비밀번호를 지정할 수 있다.</li>
+  <li>(c.notebookapp.password 라고 한다)</li>
+  <li>6006포트는 텐서보드이므로 참고</li>
+</ul>
+
+<h1 id="5-기타">5. 기타</h1>
+<ul>
+  <li>container 및 image 상태<br />
+ ```
+ docker ps
+ docker ps -a # 정지된 컨테이너 까지 보기</li>
+</ul>
+
+<p>docker images ( 또는 docker image ls)</p>
+
+<p>docker rm [container_id or name]
+ docker rmi [image name]</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  - file안에서 bridge, network, ip등을 조사
+</code></pre></div></div>
+<p>docker inspect [container_id] &gt; file</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  - network    
+</code></pre></div></div>
+<p>docker network create mynet
+ docker network connect mynet [container_id or name]</p>
+
+<p>docker network ls</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 
+  - volumne
+  
+</code></pre></div></div>
+<p>docker volume create myvolume
+ docker volume inspect myvolume
+ docker volume ls
+ docker volume rm myvolume
+ ```</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#docker" class="page__taxonomy-item" rel="tag">docker</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#docker" class="page__taxonomy-item" rel="tag">docker</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2020-08-20T00:00:00-05:00">August 20, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%EB%8F%84%EC%BB%A4+%EC%84%A4%EC%B9%98+%EB%B0%8F+%EA%B8%B0%EB%B3%B8+%EC%82%AC%EC%9A%A9%EA%B0%80%EC%9D%B4%EB%93%9C%20http%3A%2F%2F0.0.0.0%3A4000%2Fdocker%2F%25EB%258F%2584%25EC%25BB%25A4-%25EC%2584%25A4%25EC%25B9%2598-%25EB%25B0%258F-%25EA%25B8%25B0%25EB%25B3%25B8-%25EC%2582%25AC%25EC%259A%25A9-%25EA%25B0%2580%25EC%259D%25B4%25EB%2593%259C%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F0.0.0.0%3A4000%2Fdocker%2F%25EB%258F%2584%25EC%25BB%25A4-%25EC%2584%25A4%25EC%25B9%2598-%25EB%25B0%258F-%25EA%25B8%25B0%25EB%25B3%25B8-%25EC%2582%25AC%25EC%259A%25A9-%25EA%25B0%2580%25EC%259D%25B4%25EB%2593%259C%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2F0.0.0.0%3A4000%2Fdocker%2F%25EB%258F%2584%25EC%25BB%25A4-%25EC%2584%25A4%25EC%25B9%2598-%25EB%25B0%258F-%25EA%25B8%25B0%25EB%25B3%25B8-%25EC%2582%25AC%25EC%259A%25A9-%25EA%25B0%2580%25EC%259D%25B4%25EB%2593%259C%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="#" class="pagination--pager disabled">이전</a>
+    
+    
+      <a href="/docker/jekyll-blog%EB%A5%BC-%EC%9C%84%ED%95%9C-docker/" class="pagination--pager" title="jekyll blog 위한 도커
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">참고</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/markdown/Markdown%EB%AC%B8%EB%B2%95/" rel="permalink">Markdown 문법
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        2 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">1. 제목
+
+  제목 크기는 #과 공백 한 칸으로 한다. #개수가 많아질수록 헤더의 크기가 작아진다. (1개부터 6개까지)
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docker/jekyll-blog%EB%A5%BC-%EC%9C%84%ED%95%9C-docker/" rel="permalink">jekyll blog 위한 도커
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">1. 직접 command Line으로 실행하는 경우
+docker run –name blog -v ${PWD}:/srv/jekyll -p 4000:4000 -it jekyll/jekyll bash
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 JH. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

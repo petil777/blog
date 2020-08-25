@@ -1,0 +1,247 @@
+I"�%<h1 id="1-제목">1. 제목</h1>
+<ul>
+  <li>제목 크기는 #과 공백 한 칸으로 한다. #개수가 많아질수록 헤더의 크기가 작아진다. (1개부터 6개까지)</li>
+</ul>
+
+<h1 id="제일-큰-제목">제일 큰 제목</h1>
+<h2 id="두번째-큰-제목">두번째 큰 제목</h2>
+
+<hr />
+<h1 id="2-수평선">2. 수평선</h1>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">---</code> 또는 *** 등으로 구분</li>
+</ul>
+
+<hr />
+
+<h1 id="3-글씨-및-인용">3. 글씨 및 인용</h1>
+<ul>
+  <li>
+    <p>-또는 * 를 이용해 마커가 표시된 들여쓰기를 할 수 있다.</p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">&gt;</code> 를 사용하면인용 표시가 된 들여쓰기를 할 수 있다.
+    <ul>
+      <li>
+        <blockquote>
+          <p>인용</p>
+        </blockquote>
+      </li>
+    </ul>
+  </li>
+  <li>그 밖에 html 문법처럼   를 사용하여 들여쓰기를 할 수 있다.</li>
+  <li>볼드체는 언더바 _ 를 굵게 하고자 하는 글씨 양 옆에 두개씩 써서 사용 가능하다.
+    <ul>
+      <li><strong>볼드(진하게)</strong></li>
+    </ul>
+  </li>
+  <li>언더바를 한번 쓰면 이탤릭체가 된다.
+    <ul>
+      <li><em>이탤릭체(기울여서)</em></li>
+    </ul>
+  </li>
+  <li>물결을 양쪽 두번 쓰면 취소선이 된다.
+    <ul>
+      <li><del>취소선</del></li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;u&gt;&lt;/u&gt;</code> 태그를 이용하면 밑줄을 쓸 수 있다.
+    <ul>
+      <li><u>밑줄</u></li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>볼드체로 진하게 쓰다가 <em>이탤릭체로 기울이고</em> 다시 볼드체로</strong></p>
+
+<hr />
+<h1 id="4-코드-블럭">4. 코드 블럭</h1>
+<ul>
+  <li>`를 사용하여 인라인 코드를 작성할 수 있다.</li>
+  <li><code class="language-plaintext highlighter-rouge"> </code><code class="language-plaintext highlighter-rouge">(사용할 언어)</code><code class="language-plaintext highlighter-rouge"> </code> 형태로 하면 해당 언어의 문법 하이라이팅이 된다.</li>
+</ul>
+
+<p><strong>python</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'yes'</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'no'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>javascript</strong></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">test</span><span class="p">()</span> <span class="p">{</span> 
+ <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">hello world!</span><span class="dl">"</span><span class="p">);</span> 
+<span class="p">}</span> 
+</code></pre></div></div>
+<hr />
+<h1 id="5-순서">5. 순서</h1>
+<ul>
+  <li>Ordered 와 Unordered를 이용한다.</li>
+  <li>Ordered의 경우 1. 2. 3. Unordered는 - 또는 * 를 들여쓰기 하여 적절히 구분해주면 된다.</li>
+  <li>Ordered에서 전부 1. 로만 해도 자동으로 번호 부여가 된다.</li>
+</ul>
+
+<p><br /></p>
+
+<blockquote>
+  <p>Ordered</p>
+  <ol>
+    <li>첫번째</li>
+    <li>첫번째 소항목</li>
+    <li>첫번째 소항목2</li>
+    <li>두번쨰</li>
+  </ol>
+</blockquote>
+
+<blockquote>
+  <p>Unordered</p>
+  <ul>
+    <li>첫번째 항목</li>
+    <li>첫번째 소항목1</li>
+    <li>첫번째 소항목2</li>
+    <li>두번째 항목</li>
+    <li>두번쨰 소항목</li>
+  </ul>
+</blockquote>
+
+<hr />
+
+<h1 id="6-표">6. 표</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>|표|디폴트|가운데 정렬|오른쪽 정렬|
+|---|---|:---:|---:|
+||키|몸무게|혈액형|
+|김민수|170|65|A|
+|이다영|165|52|B| 
+|&lt;strong&gt;김상렬&lt;/strong&gt;|180|88|AB|
+
+기본적으로 표 안에서는 md문법 사용이 제한되는 경우가 많으니 태그로 감싸주는 형태로 적용한다.
+&lt;br/&gt; : 띄어쓰기
+&amp;nbsp; : 공백
+&lt;strong&gt; : 강조
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>표</th>
+      <th>디폴트</th>
+      <th style="text-align: center">가운데 정렬</th>
+      <th style="text-align: right">오른쪽 정렬</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td>키</td>
+      <td style="text-align: center">몸무게</td>
+      <td style="text-align: right">혈액형</td>
+    </tr>
+    <tr>
+      <td>김민수</td>
+      <td>170</td>
+      <td style="text-align: center">65</td>
+      <td style="text-align: right">A</td>
+    </tr>
+    <tr>
+      <td>이다영</td>
+      <td>165</td>
+      <td style="text-align: center">52</td>
+      <td style="text-align: right">B</td>
+    </tr>
+    <tr>
+      <td><strong>김상렬</strong></td>
+      <td>180</td>
+      <td style="text-align: center">88</td>
+      <td style="text-align: right">AB</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h1 id="7-링크">7. 링크</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>표시된 글씨 누르면 링크 연결 : [네이버](https://www.naver.com "마우스를 올려놓으면 말풍선")
+URL 보여주고 자동연결 : &lt;https://www.naver.com&gt;  
+동일 파일 내 문단 이동 : [보여질 글씨](#이동할 글씨. 스페이스 바는 - 로 구분)
+</code></pre></div></div>
+
+<p>문단 내 이동의 경우 헤더 #에 번호(ordered)가 있으면 먹히지 않는다.</p>
+
+<p>설명어를 클릭하면 URL로 이동 : <a href="https://www.naver.com" title="마우스를 올려놓으면 말풍선 표시">네이버</a><br />
+URL 보여주고 자동연결 : <a href="https://www.naver.com">https://www.naver.com</a><br />
+동일 파일 내 문단 이동 : <a href="#두번째-큰-제목">두번째 큰 제목으로 이동</a></p>
+
+<hr />
+
+<h1 id="8-이미지">8. 이미지</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>이미지 삽입 : 
+![이미지 없을 때 대체문구](https://upload.wikimedia.org/wiki/Markdown-mark.svg.png "마크다운")
+기본 :
+![이미지 이름](https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/220px-Markdown-mark.svg.png "마크다운")
+사이즈 조절 : 
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/220px-Markdown-mark.svg.png" width="100" height="100"&gt;
+이미지에 링크 걸기 :
+[![이미지](https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/220px-Markdown-mark.svg.png)](https://ko.wikipedia.org/wiki/%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4)
+</code></pre></div></div>
+
+<p>이미지 삽입 :
+<img src="https://upload.wikimedia.org/wiki/Markdown-mark.svg.png" alt="이미지 없을 때 대체문구 " title="마크다운" />
+기본 :
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/220px-Markdown-mark.svg.png" alt="이미지 이름" title="마크다운" /></p>
+
+<p>사이즈 조절 : 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/220px-Markdown-mark.svg.png" width="100" height="100" />
+이미지에 링크 걸기 :
+<a href="https://ko.wikipedia.org/wiki/%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/220px-Markdown-mark.svg.png" alt="이미지" /></a></p>
+
+<hr />
+<h1 id="9-주석">9. 주석</h1>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">&lt;!-- --&gt;</code> 를 사용 (html과 동일)</li>
+</ul>
+
+<hr />
+<h1 id="10-수학-수식">10. 수학 수식</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$\int_{a}^{b} x^2 dx$  
+$\iint_V \mu(u,v) \,du\,dv$  
+$\idotsint_V \mu(u_1,\dots,u_k) \,du_1 \dots du_k$  
+$\sum_{n=1}^{\infty} 2^{-n} = 1$  
+$\prod_{i=a}^{b} f(i)$  
+$\lim_{x\to\infty} f(x)$  
+$\lim_{x\to3} f(x)$  
+
+$\int\frac{1}{x}dx 
+
+$f(x)= if (x &lt; x_{min}) : (x/x_{min})^a$   $otherwise : 0$    
+$p_{\theta}(x) = \int p_{\theta}(2z)p_{\theta}(y\mid k)dz$
+$x = argmax_k((x_t-x_u+x_v)^T*x_m)/(||x_b-x_k+x_l||)$
+$g(x) = \int_{0}^{1}f(x)dx$
+</code></pre></div></div>
+
+<p>$\int_{a}^{b} x^2 dx$<br />
+$\iint_V \mu(u,v) \,du\,dv$<br />
+$\idotsint_V \mu(u_1,\dots,u_k) \,du_1 \dots du_k$<br />
+$\sum_{n=1}^{\infty} 2^{-n} = 1$<br />
+$\prod_{i=a}^{b} f(i)$<br />
+$\lim_{x\to\infty} f(x)$<br />
+$\lim_{x\to3} f(x)$</p>
+
+<p>$\int\frac{1}{2}dx$<br />
+$\int\frac{1}{x}dx$</p>
+
+<p>$f(x)= if (x &lt; x_{min}) : (x/x_{min})^a$   $otherwise : 0$  <br />
+$p_{\theta}(x) = \int p_{\theta}(2z)p_{\theta}(y\mid k)dz$
+$x = argmax_k((x_t-x_u+x_v)^T*x_m)/(||x_b-x_k+x_l||)$
+$g(x) = \int_{0}^{1}f(x)dx$</p>
+
+<hr />
+
+<p>참고 사이트</p>
+<ul>
+  <li>https://post.naver.com/viewer/postView.nhn?volumeNo=24627214&amp;memberNo=42458017</li>
+  <li>https://velog.io/@yjok/Markdown-%EC%82%AC%EC%9A%A9%EB%B2%95</li>
+  <li>https://eungbean.github.io/2018/06/11/How-to-use-markdown/</li>
+  <li>https://mkkim85.github.io/blog-apply-mathjax-to-jekyll-and-github-pages/</li>
+  <li>https://es.overleaf.com/learn/latex/Integrals,_sums_and_limits</li>
+</ul>
+:ET
