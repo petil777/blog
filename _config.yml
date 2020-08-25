@@ -21,7 +21,7 @@ title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "JH"
 description              : "To make up anything..."
-url                      : "https://petil777.github.io/"
+url                      : "https://petil777.github.io/blog/"
 baseurl                  : ""
 repository               : "petil777/blog" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
