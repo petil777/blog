@@ -1,3 +1,0 @@
-I"�<h4 id="1-직접-command-line으로-실행하는-경우">1. 직접 command Line으로 실행하는 경우</h4>
-<p>docker run –name blog -v ${PWD}:/srv/jekyll -p 4000:4000 -it jekyll/jekyll bash</p>
-:ET
