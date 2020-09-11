@@ -59,7 +59,7 @@ services:
 
 ```
 yml 파일 문법 검사
-$ docker-compose -f jekyll-docker-compose.yml ps 
+$ docker-compose -f jekyll-docker-compose.yml config 
 
 컨테이너 올림 (네트워크 설정 안해서 [소유주_default] 이름으로 자동으로 만들어짐)
 백그라운드로 실행. 좀 기다려야 한다.
@@ -71,3 +71,7 @@ $ docker-compose -f jekyll-docker-compose.yml down
 문제 있을 경우
 $ docker logs jekyll
 ```
+
+#### 참고  
+- https://honbabzone.com/jekyll/start-gitHubBlog/
+-
