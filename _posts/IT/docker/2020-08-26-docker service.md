@@ -38,5 +38,5 @@ $ systemctl enable [설정한 서비스] → 부팅시 실행할 수 있도록 �
 
 $ systemctl disable [설정한 서비스] → 부팅시 실행안하도록 해당 서비스 비활성화
 
-$ systemctl list-unit-files |grep docker →  도커 서비스들 확인가능
+$ systemctl list-unit-files | grep docker →  도커 서비스들 확인가능
 ```
