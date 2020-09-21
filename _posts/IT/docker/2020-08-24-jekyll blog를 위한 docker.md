@@ -73,5 +73,5 @@ $ docker logs jekyll
 ```
 
 #### 참고  
-- https://honbabzone.com/jekyll/start-gitHubBlog/
--
+- <https://honbabzone.com/jekyll/start-gitHubBlog/>
+- <https://jgtonys.github.io/blog/2019/04/25/docker-jekyll/>
