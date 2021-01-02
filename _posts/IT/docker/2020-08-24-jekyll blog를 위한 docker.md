@@ -72,6 +72,12 @@ $ docker-compose -f jekyll-docker-compose.yml down
 $ docker logs jekyll
 ```
 
+#### 3. 접속 및 수정
+- localhost:4000 으로 접속하면 된다. 페이지 수정은 localhost:4000/admin에서 하면 된다
+- Posts메뉴에서 디렉토리를 만들어 놓고 하나씩 md파일을 추가하자.
+- 글 작성 후 하단에 New metadata field 에 categories와 tags 를 추가해놓는 것이 추후 블로그를 카테고리별/태그별 검색할 때 좋다.
+- 다 작성후 save한 다음 마지막으로 git에 push하는 것을 잊지 말자.
+
 #### 참고  
 - <https://honbabzone.com/jekyll/start-gitHubBlog/>
 - <https://jgtonys.github.io/blog/2019/04/25/docker-jekyll/>

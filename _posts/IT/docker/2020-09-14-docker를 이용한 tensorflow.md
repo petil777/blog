@@ -47,6 +47,7 @@ version: '2.3'
 
 services:
   mytensorflow:
+    container_name: tfgpu
     image: tensorflow/tensorflow:latest-gpu-jupyter
     restart: always
     environment:
